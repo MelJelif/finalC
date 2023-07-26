@@ -6,28 +6,37 @@ class Program
     {
         Console.WriteLine("Enter the number of strings in the array:");
         int n = int.Parse(Console.ReadLine());
-
+        
         string[] originalArray = new string[n];
         Console.WriteLine("Enter the strings:");
 
-        for (int i = 0; i < n; i++)
+        for (int i = 0; i < originalArray.Length; i++)
         {
             originalArray[i] = Console.ReadLine();
         }
-
-        string[] newArray = new string[0];
-
+        
+        int newSize = 0;
         for (int i = 0; i < originalArray.Length; i++)
         {
             if (originalArray[i].Length <= 3)
             {
-                Array.Resize(ref newArray, newArray.Length + 1);
-                newArray[newArray.Length - 1] = originalArray[i];
+                newSize++;
             }
         }
-
+        
+        string[] newArray = new string[newSize];
+        int index = 0;
+        for (int i = 0; i < originalArray.Length; i++)
+        {
+            if (originalArray[i].Length <= 3)
+            {
+                newArray[index] = originalArray[i];
+                index++;
+            }
+        }
+        
         Console.WriteLine("New array of strings with length <= 3:");
-
+        
         for (int i = 0; i < newArray.Length; i++)
         {
             Console.WriteLine(newArray[i]);
